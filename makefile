@@ -19,3 +19,6 @@ run: main
 
 clean:
 	rm *.o *~
+
+all: main
+	./main

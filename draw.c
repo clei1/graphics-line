@@ -8,11 +8,22 @@
 //Insert your line algorithm here
 void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
   int octant = 0;
-    
+
+  if(x0 > x1){
+    int temp = x0;
+    x0 = x1;
+    x1 = temp;
+    temp = y0;
+    y0 = y1;
+    y1 = temp;
+  }
+  
   int A = y1 - y0; int B = x0 - x1;
   printf("A: %d B: %d\n", A, B);
   int x = x0; int y = y0; int d;
 
+  
+  
   if( A > 0){ // top
     if( A + B > 0 ){ octant = 2; } //means slope is > 1
     else { octant = 1; }
@@ -41,7 +52,7 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
       break;
     case 2:
       d = A + 2 * B;
-      while (x < x1){
+      while (x < x1 || y < y1){ //horizontal case
 	plot(s, c, x, y);
 	y ++;
 	if (d < 0){
